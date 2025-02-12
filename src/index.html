@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="section upload-section">
+            <h1>Upload Text Document</h1>
+            <div class="drop-area">
+                <p>Drag & Drop your text document here</p>
+                <input type="file" id="fileElem" accept=".txt" style="display:none">
+                <label class="button" for="fileElem">Select File</label>
+            </div>
+            <textarea placeholder="Text will be displayed here..." readonly class="file-content" id="file-content"></textarea>
+            <button class="button create-table" id="create-table">Create Table</button>
+        </section>
+    
+        <section class="section search-section">
+            <h1>Search Hash Table</h1>
+            <input type="text" id="search-input" placeholder="Enter values separated by spaces">
+            <button class="button" id="search-button">Search</button>
+            <textarea placeholder="Results will be displayed here..." readonly class="file-content" id="search-results"></textarea>
+
+        </section>
+
+    </div>
+
+
+        <section class="section table-section">
+            <h1>Hash Table</h1>
+            <table class="hash-table">
+                <thead>
+                    <tr>
+                        <th>Hash Value</th>
+                        <th>Elements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+    
+    <script type="module" src="./js/index.js"></script>
+</body>
+</html>
