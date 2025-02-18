@@ -39,17 +39,17 @@ const hashTableOperations = () => {
     const searchResults = document.getElementById('search-results');
     searchButton.addEventListener('click', searchHashTable, false);
     function searchHashTable() {
-        const searchValues = searchInput.value.split(" ").map(Number);
+        const searchValues = searchInput.value.split(" ");
         searchResults.innerHTML = '';
         searchValues.forEach(value => {
-            var _a;
-            const result = binarySearch(Array.from(hashTable.keys()).sort((a, b) => a - b), value);
-            const resultDiv = document.createElement('div');
+            const hashValue = hashFunction(value);
+            const values = hashTable.get(hashValue);
+            const result = values ? binarySearch(hashTable.get(hashValue).sort(), value) : -1;
             if (result !== -1) {
-                searchResults.textContent += `Hash Value: ${value}, Elements: ${(_a = hashTable.get(value)) === null || _a === void 0 ? void 0 : _a.join(', ')}\n`;
+                searchResults.textContent += `Element: ${value}, Hash Value: ${hashValue}\n`;
             }
             else {
-                searchResults.textContent += `Hash Value: ${value} not found.\n`;
+                searchResults.textContent += `Element: ${value} not found\n`;
             }
         });
     }

@@ -50,21 +50,23 @@ const hashTableOperations = () => {
     searchButton.addEventListener('click', searchHashTable, false);
     
     function searchHashTable() {
-        const searchValues = searchInput.value.split(" ").map(Number);
+        const searchValues = searchInput.value.split(" ");
         searchResults.innerHTML = '';
 
         searchValues.forEach(value => {
-            const result = binarySearch(Array.from(hashTable.keys()).sort((a, b) => a - b), value);
-            const resultDiv = document.createElement('div');
+            const hashValue = hashFunction(value);
+            const values = hashTable.get(hashValue);
+            const result = values ? binarySearch(hashTable.get(hashValue)!.sort(), value) : -1;
             if (result !== -1) {
-                searchResults.textContent += `Hash Value: ${value}, Elements: ${hashTable.get(value)?.join(', ')}\n`;
+                searchResults.textContent += `Element: ${value}, Hash Value: ${hashValue}\n`;
             } else {
-                searchResults.textContent += `Hash Value: ${value} not found.\n`;
+                searchResults.textContent += `Element: ${value} not found\n`;
             }
+
         });
     }
 
-    function binarySearch(arr: number[], target: number): number {
+    function binarySearch<T>(arr: T[], target: T): number {
         let left = 0;
         let right = arr.length - 1;
 
