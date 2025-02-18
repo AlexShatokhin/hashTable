@@ -17,7 +17,9 @@ const hashTableOperations = () => {
             if (!hashTable.has(hashValue)) {
                 hashTable.set(hashValue, []);
             }
-            hashTable.get(hashValue)!.push(word);
+            const hashWords = hashTable.get(hashValue);
+            hashWords?.push(word);
+            hashTable.set(hashValue, hashWords!.sort());
         });
 
         hashTableBody.innerHTML = '';
